@@ -1,0 +1,19 @@
+$bg: #F2F2F2;
+$bg-subtle: #EBEBEB;
+$surface: #E6E6E6;
+$text: #0A0A0A;
+$text-muted: #555555;
+$text-faint: #BBBBBB;
+$accent: #4801FF;
+$accent-light: rgba(72, 1, 255, 0.08);
+$border: rgba(0, 0, 0, 0.1);
+
+$font-display: 'Syne', system-ui, sans-serif;
+$font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
+
+$max-width: 1520px;
+$gutter: clamp(1.25rem, 3.5vw, 3.5rem);

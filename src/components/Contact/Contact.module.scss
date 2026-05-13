@@ -1,0 +1,122 @@
+.section {
+  padding-top: clamp(4rem, 8vh, 7rem);
+  padding-bottom: clamp(3rem, 6vh, 5rem);
+  border-top: 1px solid var(--border);
+}
+
+.sectionLabel {
+  display: block;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: start;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.heading {
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  opacity: 0;
+
+  em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 700;
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 0.5rem;
+}
+
+.intro { opacity: 0; }
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  opacity: 0;
+}
+
+.emailLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2.5vw, 1.875rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  transition: color 0.2s;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.4s var(--ease-out);
+  }
+
+  svg { transition: transform 0.2s var(--ease-out); }
+
+  &:hover {
+    color: var(--accent);
+    &::after { width: 100%; }
+    svg { transform: translate(3px, -3px); }
+  }
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.socialLink {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s var(--ease-out);
+  }
+
+  &:hover {
+    color: var(--accent);
+    &::after { width: 100%; }
+  }
+}
+
+.divider {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+}

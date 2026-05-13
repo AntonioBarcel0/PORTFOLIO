@@ -1,0 +1,204 @@
+// ─── Hero: full-viewport purple, like Van Holtz ───────────────────────────────
+.hero {
+  min-height: 100svh;
+  background: var(--accent);   // #4801FF fills entire hero
+  display: flex;
+  align-items: stretch;
+  padding-top: 4rem;           // nav clearance
+}
+
+// ─── Two-column grid ──────────────────────────────────────────────────────────
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 38%) 1fr;
+  align-items: end;
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  width: 100%;
+  padding-bottom: clamp(2rem, 5vh, 4rem);
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding-top: 2rem;
+  }
+}
+
+// ─── LEFT: identity block ─────────────────────────────────────────────────────
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 0;
+  padding-right: clamp(1.5rem, 3vw, 3rem);
+  gap: 2rem;
+  position: relative;
+  z-index: 2;           // always above the right column's 3D titles
+
+  @media (max-width: 900px) {
+    order: 2;
+    padding-top: 2.5rem;
+    padding-right: 0;
+  }
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.lineWrap {
+  overflow: hidden;
+  line-height: 1;
+}
+
+.nameLine {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.2vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  padding-block: 0.04em;
+  white-space: nowrap;
+}
+
+.leftInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.infoLine {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.01em;
+}
+
+.infoMuted {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.infoLinks {
+  margin-top: 0.25rem;
+}
+
+.infoLink {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.infoNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.infoNavItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.infoNavNum {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.infoNavLink {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+// ─── RIGHT: project list ──────────────────────────────────────────────────────
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;             // clip right overflow, never left
+  min-width: 0;
+
+  @media (max-width: 900px) {
+    order: 1;
+    overflow: hidden;
+  }
+}
+
+// ─── Individual project row ───────────────────────────────────────────────────
+.pRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding-block: 0.06em;
+  perspective: 600px;
+
+  &:hover .pTitle {
+    color: #fff;
+  }
+}
+
+.pMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  flex-shrink: 0;
+  padding-bottom: 0.4em;        // align to baseline of title
+}
+
+.pYear {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pSlash {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 0.1em;
+}
+
+.pTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.5vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 0.92;
+  color: #000;
+  will-change: transform;
+  transition: color 0.25s;
+  transform-origin: right center; // anchored right → expands leftward on z
+  text-align: right;
+  flex: 1;
+
+  @media (max-width: 900px) {
+    font-size: clamp(2.25rem, 10vw, 4.5rem);
+  }
+}

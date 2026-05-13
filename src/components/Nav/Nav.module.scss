@@ -1,0 +1,74 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background 0.4s, border-color 0.4s;
+  opacity: 0; // GSAP sets to 1
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 1.25rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+// Scrolled: solid light background once past hero
+.nav.scrolled {
+  background: rgba(242, 242, 242, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  .logo  { color: var(--accent); }
+  .link  { color: #888; &:hover { color: #000; } }
+  .cta   { color: #888; &:hover { color: var(--accent); } }
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8); // white on purple hero
+  flex-shrink: 0;
+  transition: color 0.3s;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 600px) { gap: 1.25rem; }
+}
+
+.link {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55); // white muted on purple
+  transition: color 0.2s;
+
+  &:hover { color: #fff; }
+}
+
+.cta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.2s;
+
+  &:hover { color: #fff; }
+
+  @media (max-width: 480px) { display: none; }
+}
