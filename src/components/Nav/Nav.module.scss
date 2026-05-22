@@ -17,6 +17,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+
+  @media (max-width: 768px) { gap: 1rem; }
 }
 
 .nav.scrolled {
@@ -40,6 +42,8 @@
   color: rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
   transition: color 0.3s;
+
+  @media (max-width: 768px) { font-size: 0.75rem; }
 }
 
 .logoMark { font-family: inherit; }
