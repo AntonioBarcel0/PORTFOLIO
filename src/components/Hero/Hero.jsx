@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { projects } from '@/data/projects'
+import { useLang } from '@/context/LangContext'
 import styles from './Hero.module.scss'
 
 function HeroProject({ project }) {
@@ -53,10 +54,10 @@ function HeroProject({ project }) {
 
 export default function Hero() {
   const heroRef = useRef(null)
+  const { t } = useLang()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Set initial states via GSAP (not CSS) so fallback is always visible
       gsap.set('.hero-name-line', { yPercent: 110 })
       gsap.set('.hero-fade',      { opacity: 0, y: 10 })
       gsap.set('.hero-project',   { opacity: 0, x: 30 })
@@ -90,6 +91,12 @@ export default function Hero() {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const infoNavItems = [
+    { label: t('nav.work'),    href: '#hero' },
+    { label: t('nav.about'),   href: '#about' },
+    { label: t('nav.contact'), href: '#contact' },
+  ]
+
   return (
     <section ref={heroRef} className={styles.hero} id="hero">
       <div className={`${styles.layout} container`}>
@@ -105,8 +112,8 @@ export default function Hero() {
           </div>
 
           <div className={styles.leftInfo}>
-            <p className={`${styles.infoLine} hero-fade`}>Full-stack Developer</p>
-            <p className={`${styles.infoLine} ${styles.infoMuted} hero-fade`}>España</p>
+            <p className={`${styles.infoLine} hero-fade`}>{t('hero.role')}</p>
+            <p className={`${styles.infoLine} ${styles.infoMuted} hero-fade`}>{t('hero.location')}</p>
 
             <div className={`${styles.infoLinks} hero-fade`}>
               <a
@@ -114,18 +121,18 @@ export default function Hero() {
                 className={styles.infoLink}
                 onClick={(e) => scroll(e, '#contact')}
               >
-                hello@antonio.dev
+                antoniogibarber99@gmail.com
               </a>
             </div>
 
             <div className={`${styles.infoNav} hero-fade`}>
-              {['Work', 'About', 'Contact'].map((label, i) => (
-                <span key={label} className={styles.infoNavItem}>
+              {infoNavItems.map(({ label, href }, i) => (
+                <span key={href} className={styles.infoNavItem}>
                   <span className={styles.infoNavNum}>0{i + 1}</span>
                   <a
-                    href={`#${label.toLowerCase()}`}
+                    href={href}
                     className={styles.infoNavLink}
-                    onClick={(e) => scroll(e, `#${label.toLowerCase()}`)}
+                    onClick={(e) => scroll(e, href)}
                   >
                     {label}
                   </a>

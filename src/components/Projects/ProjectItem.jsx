@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLang } from '@/context/LangContext'
 import styles from './Projects.module.scss'
 
 export default function ProjectItem({ project, index }) {
   const itemRef = useRef(null)
   const [expanded, setExpanded] = useState(false)
+  const { lang, t } = useLang()
+
+  // Pick localized field, fall back to base field
+  const pick = (field) =>
+    lang === 'es' && project[`${field}_es`] ? project[`${field}_es`] : project[field]
 
   useEffect(() => {
     gsap.fromTo(
@@ -20,6 +25,7 @@ export default function ProjectItem({ project, index }) {
         scrollTrigger: {
           trigger: itemRef.current,
           start: 'top 90%',
+          once: true,
         },
       }
     )
@@ -44,7 +50,7 @@ export default function ProjectItem({ project, index }) {
 
         <div className={styles.itemCenter}>
           <h3 className={styles.title}>{project.title}</h3>
-          <span className={styles.subtitle}>{project.subtitle}</span>
+          <span className={styles.subtitle}>{pick('subtitle')}</span>
         </div>
 
         <div className={styles.itemRight}>
@@ -59,22 +65,22 @@ export default function ProjectItem({ project, index }) {
 
       <div className={styles.itemDetails} aria-hidden={!expanded}>
         <div className={styles.detailsInner}>
-          <div /> {/* spacer aligns with number column */}
+          <div />
           <div className={styles.detailsContent}>
-            <p className={styles.description}>{project.description}</p>
+            <p className={styles.description}>{pick('description')}</p>
 
             <div className={styles.detailBlock}>
               <p className={styles.detailLabel}>Stack</p>
               <div className={styles.tagList}>
-                {project.stack.map((t) => (
-                  <span key={t} className={styles.tag}>{t}</span>
+                {project.stack.map((tag) => (
+                  <span key={tag} className={styles.tag}>{tag}</span>
                 ))}
               </div>
             </div>
 
             <div className={styles.detailBlock}>
-              <p className={styles.detailLabel}>Role</p>
-              <p className={styles.description} style={{ maxWidth: 'none' }}>{project.role}</p>
+              <p className={styles.detailLabel}>{t('projects.role')}</p>
+              <p className={styles.description} style={{ maxWidth: 'none' }}>{pick('role')}</p>
             </div>
 
             <div className={styles.detailLinks}>

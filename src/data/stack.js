@@ -1,23 +1,23 @@
 export const stack = [
   {
     category: 'Frontend',
-    items: ['JavaScript (ES2024)', 'React', 'Vite', 'HTML5', 'CSS / SCSS'],
+    items: ['JavaScript (ES2024)', 'React', 'Vite', 'HTML5', 'CSS / SCSS', 'ASP.NET / Razor Pages'],
   },
   {
     category: 'Backend',
-    items: ['Node.js', 'Express', 'REST APIs', 'Auth & JWT'],
+    items: ['Node.js', 'Express', 'REST APIs', 'Auth & JWT', 'ASP.NET Core 8 + C#'],
   },
   {
     category: 'Databases',
-    items: ['MySQL', 'MongoDB', 'Mongoose', 'SQL basics'],
+    items: ['MySQL', 'MongoDB', 'SQL Server Management Studio'],
   },
   {
     category: 'UI & Motion',
-    items: ['GSAP', 'CSS Animations', 'Figma', 'Responsive Design'],
+    items: ['CSS Animations', 'Figma', 'Responsive Design'],
   },
   {
     category: 'Workflow',
-    items: ['Git & GitHub', 'Vite', 'npm', 'VS Code', 'Linux basics'],
+    items: ['Git & GitHub', 'Vite', 'npm', 'VS Code Studio'],
   },
   {
     category: 'Focus areas',

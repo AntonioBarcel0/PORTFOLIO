@@ -1,3 +1,4 @@
+// ─── Desktop nav bar ──────────────────────────────────────────────────────────
 .nav {
   position: fixed;
   top: 0;
@@ -18,7 +19,6 @@
   gap: 2rem;
 }
 
-// Scrolled: solid light background once past hero
 .nav.scrolled {
   background: rgba(242, 242, 242, 0.94);
   backdrop-filter: blur(16px);
@@ -28,33 +28,37 @@
   .logo  { color: var(--accent); }
   .link  { color: #888; &:hover { color: #000; } }
   .cta   { color: #888; &:hover { color: var(--accent); } }
+  .hLine { background: var(--text); }
 }
 
 .logo {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 1.6875rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8); // white on purple hero
+  color: rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
   transition: color 0.3s;
 }
 
+.logoMark { font-family: inherit; }
+
+// ─── Desktop links ────────────────────────────────────────────────────────────
 .links {
   display: flex;
   align-items: center;
   gap: 2rem;
 
-  @media (max-width: 600px) { gap: 1.25rem; }
+  @media (max-width: 768px) { display: none; }
 }
 
 .link {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 1.2rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55); // white muted on purple
+  color: rgba(255, 255, 255, 0.55);
   transition: color 0.2s;
 
   &:hover { color: #fff; }
@@ -62,7 +66,7 @@
 
 .cta {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 1.2rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
@@ -70,5 +74,205 @@
 
   &:hover { color: #fff; }
 
-  @media (max-width: 480px) { display: none; }
+  @media (max-width: 768px) { display: none; }
+}
+
+// ─── Right group (cta + lang + hamburger) ─────────────────────────────────────
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+// ─── Language switcher ────────────────────────────────────────────────────────
+.langSwitch {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.langBtn {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.2s;
+  padding: 0;
+
+  &:hover { color: rgba(255, 255, 255, 0.85); }
+
+  .nav.scrolled & {
+    color: #bbb;
+    &:hover { color: var(--text); }
+  }
+}
+
+.langActive {
+  color: #fff !important;
+
+  .nav.scrolled & { color: var(--text) !important; }
+}
+
+.langDivider {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: rgba(255, 255, 255, 0.2);
+
+  .nav.scrolled & { color: rgba(0, 0, 0, 0.2); }
+}
+
+// ─── Hamburger (mobile only) ──────────────────────────────────────────────────
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) { display: flex; }
+}
+
+.hLine {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.85);
+  transition: background 0.3s;
+}
+
+// ─── Mobile menu overlay ──────────────────────────────────────────────────────
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  // Semi-transparent so hero project titles bleed through
+  background: rgba(72, 1, 255, 0.93);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  // Never show on desktop
+  @media (min-width: 769px) { display: none !important; }
+}
+
+.menuInner {
+  min-height: 100svh;
+  padding: 1.25rem var(--gutter) 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0; // matches nav bar height feel
+}
+
+.menuLogoMark {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.closeBtn {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4px;
+  transition: color 0.2s;
+
+  &:hover { color: #fff; }
+}
+
+// ─── Menu body ────────────────────────────────────────────────────────────────
+.menuBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  flex: 1;
+  padding-top: 3rem;
+}
+
+.menuIdentity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.menuRole,
+.menuLocation {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+.menuEmail {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.5rem;
+  transition: color 0.2s;
+
+  &:hover { color: #fff; }
+}
+
+// ─── Menu nav links ───────────────────────────────────────────────────────────
+.menuNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 1.125rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  &:hover { opacity: 0.7; }
+}
+
+.menuNum {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.menuLabel {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+// ─── Copyright ────────────────────────────────────────────────────────────────
+.menuCopy {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  padding-top: 2rem;
 }

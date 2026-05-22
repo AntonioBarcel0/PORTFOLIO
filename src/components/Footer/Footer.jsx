@@ -1,7 +1,9 @@
+import { useLang } from '@/context/LangContext'
 import styles from './Footer.module.scss'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const { t } = useLang()
 
   return (
     <footer className={styles.footer}>
@@ -10,7 +12,7 @@ export default function Footer() {
           © {year} Antonio Ginés Barceló Berlanga
         </p>
         <p className={`${styles.right} mono`}>
-          Designed & built with care
+          {t('footer.right')}
         </p>
       </div>
     </footer>

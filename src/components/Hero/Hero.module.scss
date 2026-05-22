@@ -21,6 +21,12 @@
     align-items: start;
     padding-top: 2rem;
   }
+
+  @media (max-width: 640px) {
+    align-items: end;
+    padding-top: 0;
+    min-height: calc(100svh - 4rem);
+  }
 }
 
 // ─── LEFT: identity block ─────────────────────────────────────────────────────
@@ -39,6 +45,9 @@
     padding-top: 2.5rem;
     padding-right: 0;
   }
+
+  // On small mobile the identity is accessible via the hamburger menu
+  @media (max-width: 640px) { display: none; }
 }
 
 .nameBlock {
@@ -87,7 +96,7 @@
 
 .infoLink {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 1rem;
   letter-spacing: 0.06em;
   color: rgba(255, 255, 255, 0.6);
   transition: color 0.2s;
@@ -114,14 +123,14 @@
 
 .infoNavNum {
   font-family: var(--font-mono);
-  font-size: 0.5625rem;
+  font-size: 1rem;
   letter-spacing: 0.1em;
   color: rgba(255, 255, 255, 0.3);
 }
 
 .infoNavLink {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -145,13 +154,18 @@
     order: 1;
     overflow: hidden;
   }
+
+  @media (max-width: 640px) {
+    justify-content: flex-end;
+    padding-bottom: clamp(1.5rem, 4vh, 3rem);
+  }
 }
 
 // ─── Individual project row ───────────────────────────────────────────────────
 .pRow {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0.75rem;
   cursor: pointer;
   padding-block: 0.06em;
@@ -194,11 +208,17 @@
   color: #000;
   will-change: transform;
   transition: color 0.25s;
-  transform-origin: right center; // anchored right → expands leftward on z
-  text-align: right;
+  transform-origin: left center;
+  text-align: left;
   flex: 1;
 
   @media (max-width: 900px) {
     font-size: clamp(2.25rem, 10vw, 4.5rem);
+  }
+
+  // On small mobile: fill screen width like Van Holtz
+  @media (max-width: 640px) {
+    font-size: clamp(3.5rem, 19vw, 5rem);
+    letter-spacing: -0.05em;
   }
 }

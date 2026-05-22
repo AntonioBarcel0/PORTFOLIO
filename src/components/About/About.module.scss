@@ -1,6 +1,7 @@
 .section {
   padding-block: clamp(4rem, 8vh, 7rem);
   border-top: 1px solid var(--border);
+  
 }
 
 .grid {
@@ -25,12 +26,14 @@
   @media (max-width: 900px) { position: static; }
 }
 
-.sectionLabel { opacity: 0; }
+.sectionLabel { opacity: 0; font-size: 1rem;}
+
 
 .heading {
   opacity: 0;
   text-transform: uppercase;
   letter-spacing: -0.03em;
+  
 
   em {
     font-style: italic;
