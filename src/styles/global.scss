@@ -107,6 +107,29 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   padding-inline: var(--gutter);
 }
 
+// ─── Mobile safety net (≤480px) ───────────────────────────────────────────────
+@media (max-width: 480px) {
+  // Prevent any single wide element from breaking the layout
+  img, video, svg, iframe, table {
+    max-width: 100%;
+  }
+
+  // Scale display headings down so they stay within the viewport
+  .t-display {
+    font-size: clamp(1.75rem, 8.5vw, 2.25rem);
+  }
+
+  .t-title {
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem);
+  }
+
+  // Paragraph text slightly tighter on very small screens
+  .t-body {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
 // ─── Accessibility ────────────────────────────────────────────────────────────
 :focus-visible {
   outline: 2px solid var(--accent);

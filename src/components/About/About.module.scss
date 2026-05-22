@@ -33,7 +33,8 @@
   opacity: 0;
   text-transform: uppercase;
   letter-spacing: -0.03em;
-  
+  overflow-wrap: break-word;
+  word-break: break-word;
 
   em {
     font-style: italic;
@@ -63,6 +64,8 @@
   padding-block: 0.875rem;
   border-bottom: 1px solid var(--border);
   gap: 2rem;
+
+  @media (max-width: 480px) { gap: 1rem; }
 }
 
 .factLabel {
